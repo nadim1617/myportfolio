@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { PortfolioProvider } from './context/PortfolioContext';
 import './index.css';
 import CursorGlow    from './components/CursorGlow';
@@ -14,8 +14,14 @@ import Projects      from './components/Projects';
 import MediaPortfolio from './components/MediaPortfolio';
 import Footer        from './components/Footer';
 
-import AdminLogin    from './pages/AdminLogin';
-// import AdminDashboard from './pages/AdminDashboard';
+import AdminLogin     from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+
+// ── Guards public users from accessing the dashboard directly ──
+function ProtectedRoute({ children }) {
+  const isAuth = sessionStorage.getItem('admin_authenticated') === '1';
+  return isAuth ? children : <Navigate to="/admin" replace />;
+}
 
 function MainPortfolio() {
   return (
@@ -48,9 +54,24 @@ function App() {
     <PortfolioProvider>
       <BrowserRouter>
         <Routes>
+          {/* Public portfolio */}
           <Route path="/" element={<MainPortfolio />} />
+
+          {/* Admin login */}
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<div style={{color: 'white', padding: '2rem'}}>Admin Dashboard coming soon</div>} />
+
+          {/* Admin dashboard — protected */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Catch-all */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </PortfolioProvider>
