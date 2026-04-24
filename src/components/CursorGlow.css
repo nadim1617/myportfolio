@@ -1,0 +1,32 @@
+/* ── Cursor Glow ─────────────────────────────────────────── */
+/* Only shown on devices that support hover (desktop) */
+
+@media (hover: hover) {
+  .cursor-glow {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    /* Centre the orb on the cursor */
+    margin-left: -200px;
+    margin-top: -200px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(0, 212, 180, 0.18) 0%,
+      rgba(0, 153, 255, 0.10) 40%,
+      transparent 70%
+    );
+    filter: blur(32px);
+    will-change: transform;
+    /* No CSS transition — smoothing is handled by JS lerp */
+    transition: opacity 0.4s ease;
+  }
+}
+
+@media (hover: none) {
+  .cursor-glow { display: none; }
+}

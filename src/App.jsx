@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PortfolioProvider } from './context/PortfolioContext';
 import './index.css';
+import CursorGlow    from './components/CursorGlow';
+import ScrollProgress from './components/ScrollProgress';
 
 import Navbar        from './components/Navbar';
 import Hero          from './components/Hero';
@@ -18,6 +20,8 @@ import AdminLogin    from './pages/AdminLogin';
 function MainPortfolio() {
   return (
     <>
+      <CursorGlow />
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

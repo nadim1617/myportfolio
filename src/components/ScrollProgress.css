@@ -1,0 +1,82 @@
+/* ── Scroll Progress Bar (top) ───────────────────────────── */
+.scroll-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  z-index: 10000;
+}
+
+.scroll-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4b4, #0099ff);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 12px rgba(0, 212, 180, 0.7);
+  transition: width 0.1s linear;
+}
+
+/* ── Floating Percentage Badge ───────────────────────────── */
+.scroll-pct {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9998;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Hidden by default */
+  opacity: 0;
+  transform: scale(0.7) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.scroll-pct--visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.scroll-pct__num {
+  position: absolute;
+  font-family: var(--font-head);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--clr-accent);
+  line-height: 1;
+}
+
+/* SVG ring */
+.scroll-pct__ring {
+  width: 52px;
+  height: 52px;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 6px rgba(0, 212, 180, 0.5));
+}
+
+.scroll-pct__track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-width: 3;
+}
+
+.scroll-pct__circle {
+  fill: none;
+  stroke: url(#scrollGrad);
+  stroke-width: 3;
+  stroke-linecap: round;
+  /* SVG viewBox is 36×36 so circumference ≈ 100 units — using pathLength trick */
+  pathLength: 100;
+  stroke-dasharray: 0 100;
+  transition: stroke-dasharray 0.15s ease;
+  stroke: #00d4b4;
+}
+
+/* Mobile: hide the badge, keep the bar */
+@media (max-width: 768px) {
+  .scroll-pct { display: none; }
+}
