@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { FaTrash, FaEdit, FaPlus, FaSave, FaTimes } from 'react-icons/fa';
 import FormField from './shared/FormField';
+import ImageUpload from './shared/ImageUpload';
 import './editors.css';
 
 export default function CertificatesEditor() {
@@ -60,7 +61,11 @@ export default function CertificatesEditor() {
                 <FormField label="Category" value={editForm.category} onChange={e => setEditForm({...editForm, category: e.target.value})} placeholder="e.g. Development" />
               </div>
               <FormField label="Link/URL" value={editForm.link} onChange={e => setEditForm({...editForm, link: e.target.value})} />
-              <FormField label="Image URL" value={editForm.image} onChange={e => setEditForm({...editForm, image: e.target.value})} />
+              <ImageUpload
+                label="Certificate Image (optional)"
+                value={editForm.image}
+                onChange={(base64) => setEditForm({...editForm, image: base64})}
+              />
               <div className="item-card__body" style={{display:'flex', gap:'0.5rem', justifyContent:'flex-end', paddingBottom:0, marginBottom:0, borderTop:'none'}}>
                 <button className="icon-btn icon-btn--cancel" onClick={cancelEdit} title="Cancel"><FaTimes /></button>
                 <button className="icon-btn icon-btn--save" onClick={handleSave} title="Save"><FaSave /></button>
@@ -93,7 +98,11 @@ export default function CertificatesEditor() {
               <FormField label="Category" value={editForm.category} onChange={e => setEditForm({...editForm, category: e.target.value})} />
             </div>
             <FormField label="Link/URL" value={editForm.link} onChange={e => setEditForm({...editForm, link: e.target.value})} />
-            <FormField label="Image URL" value={editForm.image} onChange={e => setEditForm({...editForm, image: e.target.value})} />
+            <ImageUpload
+              label="Certificate Image (optional)"
+              value={editForm.image}
+              onChange={(base64) => setEditForm({...editForm, image: base64})}
+            />
             <div className="item-card__body" style={{display:'flex', gap:'0.5rem', justifyContent:'flex-end', paddingBottom:0, marginBottom:0, borderTop:'none'}}>
               <button className="icon-btn icon-btn--cancel" onClick={cancelEdit} title="Cancel"><FaTimes /></button>
               <button className="icon-btn icon-btn--save" onClick={handleSave} title="Save"><FaSave /></button>

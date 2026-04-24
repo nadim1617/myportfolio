@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { FaTrash, FaEdit, FaPlus, FaSave, FaTimes } from 'react-icons/fa';
 import FormField from './shared/FormField';
+import ImageUpload from './shared/ImageUpload';
 import './editors.css';
 
 export default function ProjectsEditor() {
@@ -90,8 +91,14 @@ export default function ProjectsEditor() {
                 <FormField label="Repo URL" value={editForm.repoUrl} onChange={e => setEditForm({...editForm, repoUrl: e.target.value})} />
               </div>
               
-              <div className="field-row">
-                <FormField label="Image URL" value={editForm.image} onChange={e => setEditForm({...editForm, image: e.target.value})} />
+              <div className="field-row" style={{alignItems: 'flex-end'}}>
+                <div style={{flex: 1}}>
+                  <ImageUpload
+                    label="Project Image"
+                    value={editForm.image}
+                    onChange={(base64) => setEditForm({...editForm, image: base64})}
+                  />
+                </div>
                 <FormField type="checkbox" label="Featured" placeholder="Show in top featured section" value={editForm.featured} onChange={e => setEditForm({...editForm, featured: e.target.checked})} />
               </div>
 
@@ -143,8 +150,14 @@ export default function ProjectsEditor() {
                 <FormField label="Repo URL" value={editForm.repoUrl} onChange={e => setEditForm({...editForm, repoUrl: e.target.value})} />
               </div>
               
-              <div className="field-row">
-                <FormField label="Image URL" value={editForm.image} onChange={e => setEditForm({...editForm, image: e.target.value})} />
+              <div className="field-row" style={{alignItems: 'flex-end'}}>
+                <div style={{flex: 1}}>
+                  <ImageUpload
+                    label="Project Image"
+                    value={editForm.image}
+                    onChange={(base64) => setEditForm({...editForm, image: base64})}
+                  />
+                </div>
                 <FormField type="checkbox" label="Featured" placeholder="Show in top featured section" value={editForm.featured} onChange={e => setEditForm({...editForm, featured: e.target.checked})} />
               </div>
 

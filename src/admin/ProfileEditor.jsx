@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import FormField from './shared/FormField';
+import ImageUpload from './shared/ImageUpload';
 import './editors.css';
 
 export default function ProfileEditor() {
@@ -29,13 +30,18 @@ export default function ProfileEditor() {
       </div>
 
       <FormField type="textarea" label="Bio" value={data.bio} onChange={e => handleChange('bio', e.target.value)} />
-      
+
       <div className="field-row">
         <FormField label="Location" value={data.location} onChange={e => handleChange('location', e.target.value)} />
         <FormField label="Email" value={data.email} onChange={e => handleChange('email', e.target.value)} />
       </div>
 
-      <FormField label="Avatar URL" value={data.avatar} onChange={e => handleChange('avatar', e.target.value)} hint="Path to image (e.g. /images/avatar.png) or URL" />
+      <ImageUpload
+        label="Profile Photo"
+        value={data.avatar}
+        onChange={(base64) => handleChange('avatar', base64)}
+        hint="Upload your profile photo · Max 500 KB"
+      />
 
       <div className="save-bar">
         <button className="btn btn-primary" onClick={handleSave}>Save Profile</button>
@@ -45,3 +51,4 @@ export default function ProfileEditor() {
     </div>
   );
 }
+

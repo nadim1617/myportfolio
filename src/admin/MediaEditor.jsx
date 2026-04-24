@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { FaTrash, FaEdit, FaPlus, FaSave, FaTimes } from 'react-icons/fa';
 import FormField from './shared/FormField';
+import ImageUpload from './shared/ImageUpload';
 import './editors.css';
 
 export default function MediaEditor() {
@@ -80,10 +81,10 @@ export default function MediaEditor() {
               {activeTab === 'videography' ? (
                 <>
                   <FormField label="YouTube Embed URL" value={editForm.embedUrl} onChange={e => setEditForm({...editForm, embedUrl: e.target.value})} />
-                  <FormField label="Thumbnail URL" value={editForm.thumbnail} onChange={e => setEditForm({...editForm, thumbnail: e.target.value})} />
+                  <ImageUpload label="Video Thumbnail" value={editForm.thumbnail} onChange={base64 => setEditForm({...editForm, thumbnail: base64})} />
                 </>
               ) : (
-                <FormField label="Image Source URL" value={editForm.src} onChange={e => setEditForm({...editForm, src: e.target.value})} />
+                <ImageUpload label="Upload Image" value={editForm.src} onChange={base64 => setEditForm({...editForm, src: base64})} />
               )}
 
               <div className="item-card__body" style={{display:'flex', gap:'0.5rem', justifyContent:'flex-end', paddingBottom:0, marginBottom:0, borderTop:'none'}}>
@@ -125,10 +126,10 @@ export default function MediaEditor() {
             {activeTab === 'videography' ? (
               <>
                 <FormField label="YouTube Embed URL" value={editForm.embedUrl} onChange={e => setEditForm({...editForm, embedUrl: e.target.value})} />
-                <FormField label="Thumbnail URL" value={editForm.thumbnail} onChange={e => setEditForm({...editForm, thumbnail: e.target.value})} />
+                <ImageUpload label="Video Thumbnail" value={editForm.thumbnail} onChange={base64 => setEditForm({...editForm, thumbnail: base64})} />
               </>
             ) : (
-              <FormField label="Image Source URL" value={editForm.src} onChange={e => setEditForm({...editForm, src: e.target.value})} />
+              <ImageUpload label="Upload Image" value={editForm.src} onChange={base64 => setEditForm({...editForm, src: base64})} />
             )}
 
             <div className="item-card__body" style={{display:'flex', gap:'0.5rem', justifyContent:'flex-end', paddingBottom:0, marginBottom:0, borderTop:'none'}}>

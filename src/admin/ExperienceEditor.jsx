@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { FaTrash, FaEdit, FaPlus, FaSave, FaTimes } from 'react-icons/fa';
 import FormField from './shared/FormField';
+import ImageUpload from './shared/ImageUpload';
 import './editors.css';
 
 export default function ExperienceEditor() {
@@ -73,6 +74,11 @@ export default function ExperienceEditor() {
                 <FormField label="Location" value={editForm.location} onChange={e => setEditForm({...editForm, location: e.target.value})} />
               </div>
               
+              <ImageUpload
+                label="Company Logo (optional)"
+                value={editForm.logo}
+                onChange={(base64) => setEditForm({...editForm, logo: base64})}
+              />
               <div className="field-group">
                 <label>Job Points / Responsibilities</label>
                 <div className="points-list">
@@ -119,6 +125,11 @@ export default function ExperienceEditor() {
                 <FormField label="Type" type="select" options={[{label:'Full-time', value:'Full-time'}, {label:'Part-time', value:'Part-time'}, {label:'Freelance', value:'Freelance'}, {label:'Internship', value:'Internship'}]} value={editForm.type} onChange={e => setEditForm({...editForm, type: e.target.value})} />
                 <FormField label="Location" value={editForm.location} onChange={e => setEditForm({...editForm, location: e.target.value})} />
               </div>
+              <ImageUpload
+                label="Company Logo (optional)"
+                value={editForm.logo}
+                onChange={(base64) => setEditForm({...editForm, logo: base64})}
+              />
               <div className="field-group">
                 <label>Job Points / Responsibilities</label>
                 <div className="points-list">
